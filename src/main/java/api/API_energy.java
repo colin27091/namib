@@ -5,36 +5,54 @@
  */
 package api;
 
+import com.sun.istack.internal.logging.Logger;
+import dao.DAO_energy;
+import static dao.DataSourceFactory.getDataSource;
+import entity.Energy;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.List;
+import java.util.logging.Level;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sun.util.logging.PlatformLogger;
 
 
 
 
 @WebServlet(name = "Energy", urlPatterns = {"/Energy"})
-public class Energy extends HttpServlet {
+public class API_energy extends HttpServlet {
 
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Energy</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Energy at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String action = request.getParameter("action");
+            action = (action == null) ? "" : action;
+            switch(action){
+                case "currentData":
+                    
+                    break;
+                case "historyData":
+                    try{
+                       Date dateStartSQL = Date.valueOf(request.getParameter("dateStart"));
+                       Date dateEndSQL = Date.valueOf(request.getParameter("dateEnd"));
+                       DAO_energy dao_energy = new DAO_energy(getDataSource());
+                       List<Energy> energies = dao_energy.getEnergyHistory(dateStartSQL, dateEndSQL);
+                    } catch (IllegalArgumentException ex){
+                       
+                    }
+                    
+                    
+                    
+                    break;
+            }
+        } catch (Exception ex){
         }
     }
 
