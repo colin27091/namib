@@ -1,10 +1,11 @@
 <%-- 
-    Document   : newjsp
-    Created on : 6 déc. 2018, 20:57:42
+    Document   : jsp test
+    Created on : 7 déc. 2018, 04:37:18
     Author     : c
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>${Kernel.getInstance().getHeatlh().getWeigh()}</h1>
+        
     </body>
 </html>
