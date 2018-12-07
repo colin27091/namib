@@ -24,7 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-
 @WebServlet(name = "Energy", urlPatterns = {"/Energy"})
 public class API_energy extends HttpServlet {
 
