@@ -5,7 +5,8 @@
  */
 package api;
 
-import com.sun.istack.internal.logging.Logger;
+
+import com.google.gson.Gson;
 import dao.DAO_energy;
 import static dao.DataSourceFactory.getDataSource;
 import entity.Energy;
@@ -13,13 +14,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.List;
-import java.util.logging.Level;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sun.util.logging.PlatformLogger;
+
 
 
 
@@ -44,6 +45,9 @@ public class API_energy extends HttpServlet {
                        Date dateEndSQL = Date.valueOf(request.getParameter("dateEnd"));
                        DAO_energy dao_energy = new DAO_energy(getDataSource());
                        List<Energy> energies = dao_energy.getEnergyHistory(dateStartSQL, dateEndSQL);
+                       Gson gson = new Gson();
+                       String gsonData = gson.toJson(energies);
+                       out.println(gsonData);
                     } catch (IllegalArgumentException ex){
                        
                     }
