@@ -53,7 +53,12 @@ public class NewServlet extends HttpServlet {
                     response.sendRedirect(request.getContextPath()+"/water_Control");
                    break;
             default : request.getRequestDispatcher("newjsp.jsp").forward(request, response); 
-       
+            
+            case "3":
+                   response.sendRedirect(request.getContextPath()+"/nourriture_control");
+                   break;
+                   
+                   
    
          
          

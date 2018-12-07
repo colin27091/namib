@@ -16,6 +16,10 @@
         <servlet-name>Nourriture</servlet-name>
         <servlet-class>api.Nourriture</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>nourriture_control</servlet-name>
+        <servlet-class>controller.nourriture_control</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>temp</servlet-name>
         <url-pattern>/temp</url-pattern>
@@ -28,6 +32,10 @@
         <servlet-name>Nourriture</servlet-name>
         <url-pattern>/Nourriture</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>nourriture_control</servlet-name>
+        <url-pattern>/nourriture_control</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -35,5 +43,5 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>acceuil</welcome-file>
-    </welcome-file-list> 
+    </welcome-file-list>
 </web-app>
