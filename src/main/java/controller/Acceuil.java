@@ -6,21 +6,18 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import kernel.Kernel;
 
 /**
  *
- * @author c
+ * @author Quentin
  */
-@WebServlet(name = "GenControl", urlPatterns = {""})
-public class GenControl extends HttpServlet {
+@WebServlet(name = "acceuil", urlPatterns = {"/acceuil"})
+public class Acceuil extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,46 +30,8 @@ public class GenControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        HashMap<String,String> h = new HashMap();
-        h.put("1", "food.html");
-        h.put("2", "water.html");
-        h.put("3", "energy.html");
-        h.put("4", "health.html");
-        h.put("5", "equipement.html");
-        h.put("6", "maintenance.html");
-        String action = request.getParameter("action");
-        action = (action == null) ?  "" : action;
-        switch(action){
-            case "":
-                request.getRequestDispatcher("view/newjsp.jsp").forward(request, response);
-                break;
             
-            
-            case "2":
-
-                    response.sendRedirect(request.getContextPath()+"/water_Control");
-                   break;
-            default : request.getRequestDispatcher("newjsp.jsp").forward(request, response); 
-            
-            case "3":
-                   response.sendRedirect(request.getContextPath()+"/nourriture_control");
-                   break;
-                   
-                   
-   
-         
-         
-        }
-        
-        
-        
-        
-        
-         
-        request.getRequestDispatcher("/view/GenJSP.jsp").forward(request, response);
-        
-        
+        request.getRequestDispatcher("view/index.html").forward(request, response);
         
     }
 

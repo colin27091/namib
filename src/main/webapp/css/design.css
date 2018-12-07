@@ -1,0 +1,123 @@
+body {
+    
+    font-family: Verdana;
+    
+    background: url("../images/desert.jpg");
+    background-size: cover;
+}
+
+/* Progress Bar */
+.c-progress-bar {
+    width: 250px;
+    height: 25px;
+    
+    position: relative;
+    
+    margin-left: 25px;
+    
+    background: rgba(14, 14, 14, .5);
+}
+.c-progress-bar + .c-progress-bar {
+    margin-top: 10px;
+}
+.c-progress-bar::before {
+    height: 100%;
+    
+    position: absolute;
+    top: 0;
+    left: -28px;
+}
+.c-progress-bar--life::before {
+    content: url("../images/life.png");
+}
+.c-progress-bar--food::before {
+    content: url("../images/food.png");
+}
+.c-progress-bar--energy::before {
+    content: url("../images/energie.png");
+}
+
+.c-progress-bar__status {
+    height: 100%;
+}
+.c-progress-bar--life .c-progress-bar__status {
+    background: #66ff66;
+}
+.c-progress-bar--food .c-progress-bar__status {
+    background: #ffcc66;
+}
+.c-progress-bar--energy .c-progress-bar__status {
+    background: #6699ff;
+}
+
+/* Dropdown List */
+.c-dropdown {
+    width: 200px;
+    height: 60px;
+    
+    border: #141414;
+    
+    background: #f1f1f1;
+    
+    cursor: pointer;
+}
+.c-dropdown__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: 100%;
+    
+    font-size: 1.5em;
+}
+.c-dropdown__list {
+    display: none;
+    width: 100%;
+    max-height: 400px;
+    
+    padding-left: 0; 
+    
+    position: absolute;
+    bottom: 45px;
+    
+    background: #6699ff;
+    
+    list-style: none;
+}
+.c-dropdown__list-item {
+    display: grid;
+    grid-template-columns: 1fr 25px;
+    
+    padding: 10px 0 10px 20px;
+    
+    background: #f1f1f1;
+}
+
+.c-dropdown:hover .c-dropdown__list {
+    display: block;
+}
+.c-dropdown__list-item:hover {
+    background: #14815e
+}
+
+/* JS */
+#js-equipments {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+}
+#js-frame {
+    display: none;
+    width: 900px;
+    height: 600px;
+    
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    
+    transform: translate(-50%, -50%);
+    
+    border: 5px solid #141414;
+    
+    background: rgba(14, 14, 14, 0.5);
+}

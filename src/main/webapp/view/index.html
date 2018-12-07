@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <link rel="stylesheet" type="text/css" href="./css/design.css">
+    </head>
+    <body>
+       
+        <div class="c-progress-bar c-progress-bar--life">
+            <div class="c-progress-bar__status" style="width: 33%;"></div>
+        </div>
+        <div class="c-progress-bar c-progress-bar--food">
+            <div class="c-progress-bar__status" style="width: 66%;"></div>
+        </div>
+        <div class="c-progress-bar c-progress-bar--energy">
+            <div class="c-progress-bar__status" style="width: 95%;"></div>
+        </div>
+        
+        <iframe id="js-frame">
+            
+        </iframe>
+        
+        <div id="js-equipments" class="c-dropdown">
+            <div class="c-dropdown__title">
+                Equipements
+            </div>
+            <ul class="c-dropdown__list">
+                <li class="c-dropdown__list-item" data-ajax-url="view/water.html">
+                    Water 
+                    <span>O</span>
+                </li>
+                <li class="c-dropdown__list-item" data-ajax-url="view/Energie.html">
+                    Food
+                    <span>O</span>
+                </li>
+                <li class="c-dropdown__list-item" data-ajax-url="view/Carte.html">
+                    Map
+                    <span>X</span>
+                </li>
+            </ul>
+        </div>
+        
+        
+        <script>
+            (function (){
+                let iframe = document.getElementById("js-frame");
+                let ajaxFrames = document.getElementsByClassName("c-dropdown__list-item");
+                
+                for (let i = 0; i< ajaxFrames.length; i++) {
+                    ajaxFrames[i].addEventListener("click", function(e){
+                        iframe.setAttribute("src", e.target.dataset.ajaxUrl);
+                        iframe.style.display = "block";
+                    });
+                }
+            })();
+        </script>
+    </body>
+</html>

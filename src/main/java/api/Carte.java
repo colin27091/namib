@@ -5,15 +5,9 @@
  */
 package api;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Properties;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,8 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guillaume
  */
-@WebServlet(name = "Nourriture", urlPatterns = {"/Nourriture"})
-public class Nourriture extends HttpServlet {
+public class Carte extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,35 +29,7 @@ public class Nourriture extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-		Properties resultat = new Properties();
-                HashMap h = new HashMap();
-                h.put("type","salade");
-                h.put("quantite",0.5);
-                
-                
-                HashMap j = new HashMap();
-                j.put("type","viande");
-                j.put("quantite",1.0);
-                
-                HashMap k = new HashMap();
-                k.put("type","patates");
-                k.put("quantite",1.5);
-                
-                HashMap e = new HashMap();
-                e.put("type","tomates");
-                e.put("quantite",0.7);
 
-                resultat.put("records",Arrays.asList(k, j, h ,e));
-
-		try (PrintWriter out = response.getWriter()) {
-			// On spécifie que la servlet va générer du JSON
-			response.setContentType("application/json;charset=UTF-8");
-
-			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			String gsonData = gson.toJson(resultat);
-			out.println(gsonData);
-                        System.out.println(gsonData);
-		}
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

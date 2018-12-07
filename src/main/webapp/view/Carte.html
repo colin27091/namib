@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+   <head>
+      <title>Google Charts Tutorial</title>
+      <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
+      <script type = "text/javascript" src = "https://www.google.com/jsapi"></script>
+      <script type = "text/javascript">
+         google.charts.load('current', {packages: ['map']});     
+      </script>
+   </head>
+   
+   <body>
+      <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto">
+      </div>
+      <script language = "JavaScript">
+         function drawChart() {
+            // Define the chart to be drawn.
+            var data = google.visualization.arrayToDataTable([
+               ['Lat', 'Long', 'Name'],
+               [-21.505410, 14.083678, 'Premiere Position'],
+               [-21.620356, 14.131743, 'Deuxieme Position'],
+               [-21.655460, 14.151624, 'Troisieme Position'],
+               [-21.677295, 14.142475, 'Quatrieme Position']
+            ]);
+              
+            // Set chart options
+            var options = {
+               showTip: true,
+               icons: {
+                  default: {
+                     normal: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/Map-Marker-Ball-Azure-icon.png',
+                     selected: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/Map-Marker-Ball-Right-Azure-icon.png'
+                  }
+               }	  
+            };			
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.Map(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+         google.charts.setOnLoadCallback(drawChart);
+      </script>
+   </body>
+</html>
