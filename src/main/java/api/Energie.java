@@ -38,7 +38,7 @@ public class Energie extends HttpServlet {
             throws ServletException, IOException {
                 Properties resultat = new Properties();
                 HashMap h = new HashMap();
-                h.put("","phone1");
+                h.put("equipement","phone1");
                 h.put("energie",40);
                 
                 
