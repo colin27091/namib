@@ -5,62 +5,73 @@
  */
 package api;
 
-
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import dao.Dao_water;
-import dao.DataSourceFactory;
+import dao.DAO_energy;
+import dao.DAO_equipment;
 import static dao.DataSourceFactory.getDataSource;
-import entity.Water;
+import entity.Energy;
+import entity.Equipment;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.List;
-import java.util.Properties;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author c
+ */
+@WebServlet(name = "API_equipment", urlPatterns = {"/API_equipment"})
+public class API_equipment extends HttpServlet {
 
-
-
-
-@WebServlet(name = "Water", urlPatterns = {"/Water"})
-public class API_water extends HttpServlet {
-
-    
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action");
             action = (action == null) ? "" : action;
+            DAO_equipment dao_equipment = new DAO_equipment(getDataSource());
+            Gson gson = new Gson();
             switch(action){
-                case "currentData":
+                
+                case "equipmentNamed":
+                    
+                    String name = request.getParameter("name");
+                    Equipment equipment = dao_equipment.getEquipment(name);
+                    
+                    
+                    out.println(gson.toJson(equipment));
+                    
                     
                     break;
-                case "historyData":
-                    try{
-                       Date dateStartSQL = Date.valueOf(request.getParameter("dateStart"));
-                       Date dateEndSQL = Date.valueOf(request.getParameter("dateEnd"));
-                       Dao_water dao_water = new Dao_water(DataSourceFactory.getDataSource());
-                       List<Water> WaterHist = dao_water.getWaterHistory(dateStartSQL, dateEndSQL);
+                case "allEquipment":
+                    
                        
-
-                        System.out.println(WaterHist);
                        
-                    } catch (IllegalArgumentException ex){
+                       List<Equipment> equipments = dao_equipment.getEquipmentList();
                        
-                    }
+                       
+                       out.println(gson.toJson(equipments));
+                    
                     
                     
                     
                     break;
             }
+            
+            
         } catch (Exception ex){
         }
     }

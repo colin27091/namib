@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>temp</servlet-name>
+        <servlet-class>controller.temp</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>water2</servlet-name>
+        <servlet-class>api.water2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Nourriture</servlet-name>
+        <servlet-class>api.Nourriture</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>temp</servlet-name>
+        <url-pattern>/temp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>water2</servlet-name>
+        <url-pattern>/water2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Nourriture</servlet-name>
+        <url-pattern>/Nourriture</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

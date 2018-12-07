@@ -5,40 +5,43 @@
  */
 package api;
 
-
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import dao.Dao_water;
-import dao.DataSourceFactory;
+
+import dao.DAO_heatlh;
 import static dao.DataSourceFactory.getDataSource;
-import entity.Water;
+import entity.Heatlh;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.List;
-import java.util.Properties;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author c
+ */
+@WebServlet(name = "API_equipment", urlPatterns = {"/API_equipment"})
+public class API_heatlh extends HttpServlet {
 
-
-
-
-@WebServlet(name = "Water", urlPatterns = {"/Water"})
-public class API_water extends HttpServlet {
-
-    
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action");
             action = (action == null) ? "" : action;
+            
             switch(action){
                 case "currentData":
                     
@@ -47,12 +50,11 @@ public class API_water extends HttpServlet {
                     try{
                        Date dateStartSQL = Date.valueOf(request.getParameter("dateStart"));
                        Date dateEndSQL = Date.valueOf(request.getParameter("dateEnd"));
-                       Dao_water dao_water = new Dao_water(DataSourceFactory.getDataSource());
-                       List<Water> WaterHist = dao_water.getWaterHistory(dateStartSQL, dateEndSQL);
-                       
-
-                        System.out.println(WaterHist);
-                       
+                       DAO_heatlh dao_heatlh = new DAO_heatlh(getDataSource());
+                       List<Heatlh>  heatlhHistory = dao_heatlh.getHeatlhHistory(dateStartSQL, dateEndSQL);
+                       Gson gson = new Gson();
+                       String gsonData = gson.toJson(heatlhHistory);
+                       out.println(gsonData);
                     } catch (IllegalArgumentException ex){
                        
                     }
@@ -61,6 +63,10 @@ public class API_water extends HttpServlet {
                     
                     break;
             }
+            
+            
+            
+            
         } catch (Exception ex){
         }
     }

@@ -5,38 +5,43 @@
  */
 package api;
 
-
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import dao.Dao_water;
-import dao.DataSourceFactory;
+import dao.DAO_energy;
+import dao.DAO_food;
 import static dao.DataSourceFactory.getDataSource;
-import entity.Water;
+import entity.Energy;
+import entity.Food;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.List;
-import java.util.Properties;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author c
+ */
+@WebServlet(name = "API_food", urlPatterns = {"/API_food"})
+public class API_food extends HttpServlet {
 
-
-
-
-@WebServlet(name = "Water", urlPatterns = {"/Water"})
-public class API_water extends HttpServlet {
-
-    
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         try (PrintWriter out = response.getWriter()) {
+            
             String action = request.getParameter("action");
             action = (action == null) ? "" : action;
             switch(action){
@@ -47,21 +52,34 @@ public class API_water extends HttpServlet {
                     try{
                        Date dateStartSQL = Date.valueOf(request.getParameter("dateStart"));
                        Date dateEndSQL = Date.valueOf(request.getParameter("dateEnd"));
-                       Dao_water dao_water = new Dao_water(DataSourceFactory.getDataSource());
-                       List<Water> WaterHist = dao_water.getWaterHistory(dateStartSQL, dateEndSQL);
+                       DAO_food dao_food = new DAO_food(getDataSource());
+                       List<Food> foods = dao_food.getFoodHistory(dateStartSQL, dateEndSQL);
+                       Gson gson = new Gson();
+                       String gsonData = gson.toJson(foods);
+                       out.println(gsonData);
+                    } catch (IllegalArgumentException ex){
                        
+                    }
 
-                        System.out.println(WaterHist);
-                       
+                    break;
+                case "historyDataType":
+                    try{
+                        
+                       String type = request.getParameter("type");
+                       Date dateStartSQL = Date.valueOf(request.getParameter("dateStart"));
+                       Date dateEndSQL = Date.valueOf(request.getParameter("dateEnd"));
+                       DAO_food dao_food = new DAO_food(getDataSource());
+                       List<Food> foods = dao_food.getTypeFoodHistory(type, dateStartSQL, dateEndSQL);
+                       Gson gson = new Gson();
+                       String gsonData = gson.toJson(foods);
+                       out.println(gsonData);
                     } catch (IllegalArgumentException ex){
                        
                     }
                     
-                    
-                    
                     break;
             }
-        } catch (Exception ex){
+            
         }
     }
 
