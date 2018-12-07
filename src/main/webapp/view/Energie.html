@@ -15,15 +15,15 @@ and open the template in the editor.
 function drawChart(chardata) {
       var data = google.visualization.arrayToDataTable(chardata);
       var options = {
-        title: 'Nourriture en stock',
+        title: 'Energie des equipements',
         chartArea: {width: '50%'},
         hAxis: {
-          title: 'Quantite KG',
+          title: 'Energie en %',
           minValue: 0,
-          maxValue: 3
+          maxValue: 100
         },
         vAxis: {
-          title: 'Type de nourriture'
+          title: 'Equipement'
         }
       };
       var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
@@ -32,7 +32,7 @@ function drawChart(chardata) {
     
     function doAjax() {
 			$.ajax({
-				url: "/namib/Nourriture",
+				url: "/namib/Energie",
 				dataType: "json",
 				success: // La fonction qui traite les résultats
 					function (result) {
@@ -41,10 +41,10 @@ function drawChart(chardata) {
 						// On reformate le résultat comme un tableau
 						var chartData = [];
 						// On met le descriptif des données
-						chartData.push(["type", "Quantite"]);
+						chartData.push(["equipement", "Energie"]);
 						//for(var client in result.records) {
                                                 result.records.forEach(function(client){
-                                                    chartData.push([client.type, client.quantite]);
+                                                    chartData.push([client.equipement, client.energie]);
                                                 });
                                                 console.log(chartData);
 						// On dessine le graphique

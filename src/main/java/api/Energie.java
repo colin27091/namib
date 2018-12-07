@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guillaume
  */
-@WebServlet(name = "Nourriture", urlPatterns = {"/Nourriture"})
-public class Nourriture extends HttpServlet {
+@WebServlet(name = "Energie", urlPatterns = {"/Energie"})
+public class Energie extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,26 +36,26 @@ public class Nourriture extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-		Properties resultat = new Properties();
+                Properties resultat = new Properties();
                 HashMap h = new HashMap();
-                h.put("type","salade");
-                h.put("quantite",0.5);
+                h.put("","phone1");
+                h.put("energie",40);
                 
                 
                 HashMap j = new HashMap();
-                j.put("type","viande");
-                j.put("quantite",1.0);
+                j.put("equipement","phone2");
+                j.put("energie",60);
                 
                 HashMap k = new HashMap();
-                k.put("type","patates");
-                k.put("quantite",1.5);
+                k.put("equipement","panneauSolaire1");
+                k.put("energie",80);
                 
                 HashMap e = new HashMap();
-                e.put("type","tomates");
-                e.put("quantite",0.7);
+                e.put("equipement","panneauSolaire2");
+                e.put("energie",10);
 
                 resultat.put("records",Arrays.asList(k, j, h ,e));
-
+                
 		try (PrintWriter out = response.getWriter()) {
 			// On spécifie que la servlet va générer du JSON
 			response.setContentType("application/json;charset=UTF-8");
