@@ -6,7 +6,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,8 +30,8 @@ public class Acceuil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                request.getRequestDispatcher("/javascript/Barres.jsp").forward(request, response);
-    
+            
+        request.getRequestDispatcher("view/index.html").forward(request, response);
         
     }
 
