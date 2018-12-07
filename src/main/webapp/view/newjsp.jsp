@@ -18,7 +18,7 @@
         <div>
         <select name="action" class="custom-select">
             <option value="1">Food</option>
-            <option value="2" >Water</option>
+            <option value="2">Water</option>
             <option value="3">Energy</option>
             <option value="4">Health</option>
             <option value="5">Equipment</option>

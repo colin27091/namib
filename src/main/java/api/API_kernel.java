@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package api;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +19,8 @@ import kernel.Kernel;
  *
  * @author c
  */
-@WebServlet(name = "NewServlet", urlPatterns = {""})
-public class NewServlet extends HttpServlet {
+@WebServlet(name = "API_kernel", urlPatterns = {"/API_kernel"})
+public class API_kernel extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,40 +33,13 @@ public class NewServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HashMap<String,String> h = new HashMap();
-        h.put("1", "food.html");
-        h.put("2", "water.html");
-        h.put("3", "energy.html");
-        h.put("4", "health.html");
-        h.put("5", "equipement.html");
-        h.put("6", "maintenance.html");
-        String action = request.getParameter("action");
-        action = (action == null) ?  "" : action;
-        switch(action){
-            case "":
-                request.getRequestDispatcher("view/newjsp.jsp").forward(request, response);
-                break;
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            Gson gson = new Gson();
+            String gsonData = gson.toJson(Kernel.getInstance());
+            out.println(gsonData);
             
-            
-            case "2":
-
-                    response.sendRedirect(request.getContextPath()+"/water_Control");
-                   break;
-            default : request.getRequestDispatcher("newjsp.jsp").forward(request, response); 
-       
-   
-         
-         
         }
-        
-        
-        
-        
-        
-        
-        
-      
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
