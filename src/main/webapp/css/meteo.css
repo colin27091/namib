@@ -1,13 +1,11 @@
-body{
+h1{
     align-content: center;
 }
 #meteo{
     text-align: center;
- 
     width: 1000px;
     margin: auto;
-
-    background-image: url(../Desktop/mario.jpg);
+    background-image: url(../images/ciel.jpg);
 
 }
 
