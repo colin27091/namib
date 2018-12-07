@@ -7,13 +7,16 @@ package api;
 
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import dao.Dao_water;
+import dao.DataSourceFactory;
 import static dao.DataSourceFactory.getDataSource;
 import entity.Water;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.List;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,12 +46,12 @@ public class API_water extends HttpServlet {
                     try{
                        Date dateStartSQL = Date.valueOf(request.getParameter("dateStart"));
                        Date dateEndSQL = Date.valueOf(request.getParameter("dateEnd"));
-                       Dao_water dao_water = new Dao_water(getDataSource());
+                       Dao_water dao_water = new Dao_water(DataSourceFactory.getDataSource());
                        List<Water> WaterHist = dao_water.getWaterHistory(dateStartSQL, dateEndSQL);
                        
-                       Gson gson = new Gson();
-                       String gsonData = gson.toJson(WaterHist);
-                       out.println(gsonData);
+
+                        System.out.println(WaterHist);
+                       
                     } catch (IllegalArgumentException ex){
                        
                     }
