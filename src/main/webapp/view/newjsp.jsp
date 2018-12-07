@@ -14,9 +14,9 @@
     </head>
     <body>
         <h1>Bienvenue à la gestion de votre profil</h1>
+        <form method='GET'>
         <div>
-        <select class="custom-select">
-            <option selected>More details about..</option>
+        <select name="action" class="custom-select">
             <option value="1">Food</option>
             <option value="2" >Water</option>
             <option value="3">Energy</option>
@@ -24,7 +24,9 @@
             <option value="5">Equipment</option>
             <option value="6">Maintenance</option>
         </select>
+        <input value="Connexion" type="SUBMIT">
         </div>
+        </form>
     </body>
 </html>
  

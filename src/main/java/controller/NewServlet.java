@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +32,37 @@ public class NewServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HashMap<String,String> h = new HashMap();
+        h.put("1", "food.html");
+        h.put("2", "water.html");
+        h.put("3", "energy.html");
+        h.put("4", "health.html");
+        h.put("5", "equipement.html");
+        h.put("6", "maintenance.html");
+        String action = request.getParameter("action");
+        if(action == null ){
+                action="";
+        }
+        switch(action){
+            case "":{
+                request.getRequestDispatcher("newjsp.jsp").forward(request, response);
+                break;
+            }
+            
+            case "connexion":{
+
+                    request.getRequestDispatcher("water.html").forward(request, response);
+                    
+        }
+         break;
+         
+         
+        }
+        
+        
+        
+        
+        
         
         
     }
