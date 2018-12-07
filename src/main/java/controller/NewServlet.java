@@ -13,12 +13,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import kernel.Kernel;
 
 /**
  *
  * @author c
  */
-@WebServlet(name = "NewServlet", urlPatterns = {"/NewServlet"})
+@WebServlet(name = "NewServlet", urlPatterns = {""})
 public class NewServlet extends HttpServlet {
 
     /**
@@ -64,6 +65,9 @@ public class NewServlet extends HttpServlet {
         
         
         
+        
+        request.setAttribute("Kernel", Kernel.getInstance());
+        request.getRequestDispatcher("view/jsp_test.jsp").forward(request, response);
         
     }
 

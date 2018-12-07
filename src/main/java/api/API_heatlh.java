@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import kernel.Kernel;
 
 /**
  *
@@ -41,10 +42,10 @@ public class API_heatlh extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action");
             action = (action == null) ? "" : action;
-            
+            Gson gson = new Gson();
             switch(action){
                 case "currentData":
-                    
+                    Kernel.getInstance();
                     break;
                 case "historyData":
                     try{
@@ -52,7 +53,6 @@ public class API_heatlh extends HttpServlet {
                        Date dateEndSQL = Date.valueOf(request.getParameter("dateEnd"));
                        DAO_heatlh dao_heatlh = new DAO_heatlh(getDataSource());
                        List<Heatlh>  heatlhHistory = dao_heatlh.getHeatlhHistory(dateStartSQL, dateEndSQL);
-                       Gson gson = new Gson();
                        String gsonData = gson.toJson(heatlhHistory);
                        out.println(gsonData);
                     } catch (IllegalArgumentException ex){
@@ -64,6 +64,7 @@ public class API_heatlh extends HttpServlet {
                     break;
             }
             
+                       
             
             
             

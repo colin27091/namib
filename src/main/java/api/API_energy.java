@@ -37,6 +37,11 @@ public class API_energy extends HttpServlet {
             switch(action){
                 case "currentData":
                     
+                    
+                    
+                    
+                    
+                    
                     break;
                 case "historyData":
                     try{

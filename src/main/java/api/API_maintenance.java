@@ -44,8 +44,15 @@ public class API_maintenance extends HttpServlet {
             String action = request.getParameter("action");
             action = (action == null) ? "" : action;
             switch(action){
-                case "historyMaintenance":
+                
+                case "faireMaintenance":
                     
+                    String equipment = request.getParameter("equipment");
+                    String description = request.getParameter("description");
+                    
+                    
+                    break;
+                case "historyMaintenance":
                     try{
                        Date dateStartSQL = Date.valueOf(request.getParameter("dateStart"));
                        Date dateEndSQL = Date.valueOf(request.getParameter("dateEnd"));
