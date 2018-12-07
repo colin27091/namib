@@ -14,19 +14,8 @@
     </head>
     <body>
         <h1>Bienvenue à la gestion de votre profil</h1>
-        <form method='GET'>
-        <div>
-        <select name="action" class="custom-select">
-            <option value="1">Food</option>
-            <option value="2">Water</option>
-            <option value="3">Energy</option>
-            <option value="4">Health</option>
-            <option value="5">Equipment</option>
-            <option value="6">Maintenance</option>
-        </select>
-        <input value="Connexion" type="SUBMIT">
-        </div>
-        </form>
+        <button name="action" value="valider">Valider</button>
+        
     </body>
 </html>
  
